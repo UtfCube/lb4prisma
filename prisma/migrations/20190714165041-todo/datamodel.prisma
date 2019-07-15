@@ -1,0 +1,31 @@
+datasource db {
+    provider = "postgresql"
+    url      = "postgresql://postgres:postgres@localhost:5432/prismatest?schema=public"
+}
+
+generator photon {
+    provider = "photonjs"
+}
+
+model TodoList {
+    id    String  @default(cuid()) @id @unique
+    title String
+    color String?
+    todos Todo[]
+}
+
+model Todo {
+    id         String    @default(cuid()) @id @unique
+    title      String    @unique
+    desc       String?
+    isComplete Boolean
+    todoList   TodoList?
+    createdAt  DateTime  @default(now())
+    updatedAt  DateTime  @updatedAt
+}
+
+model TodoListImage {
+    id       String    @default(cuid()) @id @unique
+    value    String
+    todoList TodoList?
+}

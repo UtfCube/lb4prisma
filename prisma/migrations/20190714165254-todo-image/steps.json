@@ -1,0 +1,40 @@
+{
+  "version": "0.0.132",
+  "steps": [
+    {
+      "stepType": "CreateField",
+      "model": "TodoList",
+      "name": "image",
+      "type": {
+        "Relation": {
+          "to": "TodoListImage",
+          "to_fields": [
+            "id"
+          ],
+          "name": "TodoListToTodoListImage",
+          "on_delete": "None"
+        }
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "DeleteField",
+      "model": "TodoList",
+      "name": "todoListImage"
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "TodoListImage",
+      "name": "todoList",
+      "type": {
+        "Relation": {
+          "to": "TodoList",
+          "to_fields": [],
+          "name": "TodoListToTodoListImage",
+          "on_delete": "None"
+        }
+      }
+    }
+  ]
+}
